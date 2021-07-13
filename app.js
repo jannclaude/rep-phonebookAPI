@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
 
 
 app.get('/friends', (req, res) =>{
-    res.send('Friends');
+    res.send('Hello friends');
 });
 
 
@@ -25,6 +25,5 @@ connectDB();
 
 // Routes
 app.use('/', require('./routes/index'));
-
 
 app.listen(process.env.PORT || 3000);

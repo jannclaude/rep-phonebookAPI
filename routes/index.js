@@ -19,10 +19,7 @@ router.post('/api/friends/add', (req, res) => {
     const fri = new Friends({
         fname: req.body.fname,
         lname: req.body.lname,
-        hphone: req.body.hphone,
-        pphone: req.body.pphone,
-        wphone: req.body.wphone,
-        fphone: req.body.fphone
+        phone: req.body.hphone,
     });
     fri.save((err, data) => {
         res.status(200).json({code:200, message: 'Friend added successfully',
@@ -31,7 +28,7 @@ router.post('/api/friends/add', (req, res) => {
 });
 
 
-//Get single employee
+//Get single friend
 router.get('/api/employee/:id', (req, res) => {
     Friends.findById(req.params.id, (err, data) => {
         if(!err){
@@ -40,6 +37,18 @@ router.get('/api/employee/:id', (req, res) => {
             console.log(err);
         }
     });
+});
+
+//Delete friend
+router.delete('/delete/:id', async (req,res) => {
+    const result = await Post.findByIdAndDelete({_id: req.params.id});
+    res.json(result);
+});
+
+//Update a friend
+router.patch('/update/:id', async (req, res) => {
+    const patch = await Post.updateOne({_id: req.params.id}, {$set: req.body});
+    res.json(patch);
 });
 
 module.exports = router;

@@ -11,20 +11,8 @@ const Friends = mongoose.model('Friends', {
         type: String,
         required: true
     },
-    hphone: {
-        type: String,
-        required: true
-    },
-    pphone: {
-        type: String,
-        required: true
-    },
-    wphone: {
-        type: String,
-        required: true
-    },
-    fphone: {
-        type: String,
+    phone: {
+        type: [String],
         required: true
     }
 });
