@@ -29,7 +29,7 @@ router.post('/api/friends/add', (req, res) => {
 
 
 //Get single friend
-router.get('/api/employee/:id', (req, res) => {
+router.get('/api/friends/:id', (req, res) => {
     Friends.findById(req.params.id, (err, data) => {
         if(!err){
             res.send(data);
