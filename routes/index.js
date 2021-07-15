@@ -19,7 +19,7 @@ router.post('/api/friends/add', (req, res) => {
     const fri = new Friends({
         fname: req.body.fname,
         lname: req.body.lname,
-        phone: req.body.hphone,
+        phone: req.body.phone,
     });
     fri.save((err, data) => {
         res.status(200).json({code:200, message: 'Friend added successfully',
