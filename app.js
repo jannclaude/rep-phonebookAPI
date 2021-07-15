@@ -15,7 +15,6 @@ app.get('/friends', (req, res) =>{
     res.send('Hello friends');
 });
 
-
 const connectDB = require('./config/db');
 
 //Load config

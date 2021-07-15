@@ -41,13 +41,13 @@ router.get('/api/friends/:id', (req, res) => {
 
 //Delete friend
 router.delete('/delete/:id', async (req,res) => {
-    const result = await Post.findByIdAndDelete({_id: req.params.id});
+    const result = await Friends.findByIdAndDelete({_id: req.params.id});
     res.json(result);
 });
 
 //Update a friend
 router.patch('/update/:id', async (req, res) => {
-    const patch = await Post.updateOne({_id: req.params.id}, {$set: req.body});
+    const patch = await Friends.updateOne({_id: req.params.id}, {$set: req.body});
     res.json(patch);
 });
 
