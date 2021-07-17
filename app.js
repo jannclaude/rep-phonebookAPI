@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-var jwt = require('jsonwebtoken');
 
 const app = express();
 app.use(bodyParser.json());
