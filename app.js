@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(express.json({extended: false}));
 
 const dotenv = require('dotenv');
 
@@ -19,5 +20,6 @@ connectDB();
 
 // Routes
 app.use('/', require('./routes/index'));
+app.use('/', require('./routes/index2'))
 
 app.listen(process.env.PORT || 3000);
