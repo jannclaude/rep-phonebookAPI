@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+var jwt = require('jsonwebtoken');
 
 const { Friends } = require('../models/friends');
 
@@ -49,6 +50,45 @@ router.delete('/delete/:id', async (req,res) => {
 router.patch('/update/:id', async (req, res) => {
     const patch = await Friends.updateOne({_id: req.params.id}, {$set: req.body});
     res.json(patch);
+});
+
+//signup route api
+router.post("/signup", async (req, res) => {
+    const { email, password } = req.body;
+    console.log(email);
+    let user = await User.findOne({ email });
+
+    if (user) {
+        return res.json({ msg: "Email already taken" });
+    }
+
+    user = new User({
+        email,
+        password,
+    });
+
+    await user.save();
+    var token = jwt.sign({ id: user.id }, "password");
+    res.json({ token: token });
+});
+
+//login route api
+router.post("/login", async (req, res) =>{
+    const { email, password } = req.body;
+    console.log(email);
+
+    let user = await User.findOne({ email });
+    console.log(user);
+
+    if(!user) {
+        return res.json({ msg: "no user found with that email" });
+    }
+    if(user.password !== password) {
+        return res.json({ msg: "password is not correct" });
+    }
+
+    var token = jwt.sign({ id: user.id }, "password");
+    return res.json({ token: token });
 });
 
 module.exports = router;
