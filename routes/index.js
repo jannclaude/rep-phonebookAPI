@@ -3,6 +3,7 @@ const router = express.Router();
 var jwt = require('jsonwebtoken');
 
 const { Friends } = require('../models/friends');
+const { User } = require('../models/friends');
 
 //Get all friends
 router.get('/api/friends', (req, res) => {
