@@ -73,6 +73,17 @@ router.post("/signup", async (req, res) => {
     res.json({ token: token });
 });
 
+//get router api
+router.get('/api/users', (req, res) => {
+    User.find({}, (err, data) => {
+        if(!err) {
+            res.send(data);
+        } else {
+            console.log(err);
+        }
+    });
+});
+
 //login route api
 router.post("/login", async (req, res) =>{
     const { email, password } = req.body;
