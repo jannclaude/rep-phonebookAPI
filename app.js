@@ -20,6 +20,6 @@ connectDB();
 
 // Routes
 app.use('/', require('./routes/index'));
-app.use('/', require('./routes/index2'))
+app.use('/', require('./routes/index2'));
 
 app.listen(process.env.PORT || 3000);

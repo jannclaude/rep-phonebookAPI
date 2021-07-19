@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const jwt = require('jsonwebtoken');
 
 const { Friends } = require('../models/friends');
-var { Users } = require('../models/users');
 
 //Get all friends
 router.get('/api/friends', (req, res) => {
@@ -51,56 +49,6 @@ router.delete('/delete/:id', async (req,res) => {
 router.patch('/update/:id', async (req, res) => {
     const patch = await Friends.updateOne({_id: req.params.id}, {$set: req.body});
     res.json(patch);
-});
-
-//signup route api
-router.post("/signup", async (req, res) => {
-    const { email, password } = req.body;
-    console.log(email);
-    let user = await Users.findOne({ email });
-
-    if (user) {
-        return res.json({ msg: "Email already taken" });
-    }
-
-    user = new Users({
-        email,
-        password,
-    });
-
-    await user.save();
-    var token = jwt.sign({ id: user.id }, "password");
-    res.json({ token: token });
-});
-
-//get router api
-router.get('/api/users', (req, res) => {
-    Users.find({}, (err, data) => {
-        if(!err) {
-            res.send(data);
-        } else {
-            console.log(err);
-        }
-    });
-});
-
-//login route api
-router.post("/login", async (req, res) =>{
-    const { email, password } = req.body;
-    console.log(email);
-
-    let user = await Users.findOne({ email });
-    console.log(user);
-
-    if(!user) {
-        return res.json({ msg: "no user found with that email" });
-    }
-    if(user.password !== password) {
-        return res.json({ msg: "password is not correct" });
-    }
-
-    var token = jwt.sign({ id: user.id }, "password");
-    return res.json({ token: token });
 });
 
 module.exports = router;
