@@ -11,7 +11,7 @@ router.post("/signup", async (req, res) => {
     let user = await Users.findOne({ email });
 
     if (user) {
-        return res.json({ message: "Email already taken" });
+        return res.json({ message: 'Email already taken' });
     }
 
     user = new Users({
@@ -44,10 +44,10 @@ router.post("/login", async (req, res) =>{
     console.log(user);
 
     if(!user) {
-        return res.json({ message: "No user found with that email" });
+        return res.json({ message: 'No user found with that email' });
     }
     if(user.password !== password) {
-        return res.json({ message: "Password is not correct" });
+        return res.json({ message: 'Password is not correct' });
     }
 
     var token = jwt.sign({ id: user.id }, "password");
