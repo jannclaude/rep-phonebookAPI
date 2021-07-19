@@ -8,7 +8,6 @@ const Users = mongoose.model('User', {
     password:  {
         type: String,
         required: true
-
     }
 });
 
