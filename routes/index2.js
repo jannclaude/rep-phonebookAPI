@@ -11,7 +11,7 @@ router.post("/signup", async (req, res) => {
     let user = await Users.findOne({ email });
 
     if (user) {
-        return res.json({ msg: "Email already taken" });
+        return res.json({ msg: "Invalid Email" });
     }
 
     user = new Users({
