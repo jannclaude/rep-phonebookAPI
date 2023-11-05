@@ -14,7 +14,7 @@ Start the API
 $npm start
 ```
 
-###Authentication
+### Authentication
 
 To access the API endpoints,  users need to be authenticated using JSON Web Tokens (JWT). To authenticate, follow these steps:
 
