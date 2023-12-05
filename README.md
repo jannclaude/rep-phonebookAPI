@@ -3,6 +3,7 @@
 This API documentation provides information on the endpoints and functionality of the Contacts Android application. This API allows users to manage contact information, including creating, reading, updating, and deleting contacts. Authentication is implemented using JWT for user login and signup.
 
 ### Installation
+
 Install the dependencies before running.
 
 ```bash
