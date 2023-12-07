@@ -10,7 +10,7 @@ Install the dependencies before running.
 $npm install express nodemon mongoose
 ```
 
-Start the API
+Start the API.
 ```bash
 $npm start
 ```
